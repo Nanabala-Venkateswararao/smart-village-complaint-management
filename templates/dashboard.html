@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}My Complaints{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">CITIZEN PORTAL</p><h1>My complaints</h1><p>Welcome, {{ user.first_name|default:user.username }}. Follow your submitted reports here.</p></div><a class="button" href="{% url 'create_complaint' %}">+ New complaint</a></div>
+<form class="searchbar" method="get"><input name="q" value="{{ query }}" placeholder="Search title, category, location or status"><button class="button" type="submit">Search</button></form>
+{% if complaints %}
+<div class="complaint-list">{% for complaint in complaints %}
+<a class="complaint-card" href="{% url 'complaint_detail' complaint.pk %}">
+  <div class="card-top"><span class="ticket">Complaint #{{ complaint.pk }}</span><span class="status status-{{ complaint.status|slugify }}">{{ complaint.status }}</span></div>
+  <h3>{{ complaint.title }}</h3><p>{{ complaint.category }} · {{ complaint.village_location }}</p><small>Submitted {{ complaint.created_at|date:"d M Y, h:i A" }}</small>
+</a>{% endfor %}</div>
+{% else %}<div class="empty"><h2>No complaints found</h2><p>Submit your first complaint or try a different search.</p><a class="button" href="{% url 'create_complaint' %}">Submit complaint</a></div>{% endif %}
+{% endblock %}

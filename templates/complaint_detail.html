@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Complaint #{{ complaint.pk }}{% endblock %}
+{% block content %}
+<a class="back-link" href="{% url 'dashboard' %}">← Back to my complaints</a>
+<section class="panel detail">
+<div class="card-top"><span class="ticket">Complaint #{{ complaint.pk }}</span><span class="status status-{{ complaint.status|slugify }}">{{ complaint.status }}</span></div>
+<h1>{{ complaint.title }}</h1><p class="muted">{{ complaint.category }} · {{ complaint.village_location }}</p>
+<h3>Description</h3><p class="preserve">{{ complaint.description }}</p>
+{% if complaint.image %}<h3>Attached image</h3><img class="evidence" src="{{ complaint.image.url }}" alt="Complaint evidence">{% endif %}
+<div class="timeline"><div><b>Submitted</b><span>{{ complaint.created_at|date:"d M Y, h:i A" }}</span></div><div><b>Last updated</b><span>{{ complaint.updated_at|date:"d M Y, h:i A" }}</span></div></div>
+<h3>Official response</h3>{% if complaint.official_response %}<p class="preserve">{{ complaint.official_response }}</p>{% else %}<p class="muted">No official response has been added yet.</p>{% endif %}
+{% if user.is_staff %}<a class="button" href="{% url 'update_complaint' complaint.pk %}">Update complaint</a>{% endif %}
+</section>
+{% endblock %}

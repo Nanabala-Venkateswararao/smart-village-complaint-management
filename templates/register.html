@@ -1,0 +1,125 @@
+```html
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+<section class="form-card">
+
+    <h1>Create an Account</h1>
+    <p>Register to manage your village complaints.</p>
+
+    <!-- Error Message -->
+    {% if error %}
+        <div class="message error-box">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <!-- Registration Form -->
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Username -->
+        <div class="field">
+            <label for="username">Username</label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                required
+                autocomplete="username"
+            >
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+            <label for="email">Email Address</label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter email address"
+                required
+                autocomplete="email"
+            >
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+            <label for="password">Password</label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create a password"
+                required
+                autocomplete="new-password"
+            >
+
+            <label class="show-password">
+                <input
+                    type="checkbox"
+                    id="showPassword"
+                    onchange="togglePassword('password', this)"
+                >
+                Show password
+            </label>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="field">
+            <label for="confirm_password">Confirm Password</label>
+
+            <input
+                type="password"
+                id="confirm_password"
+                name="confirm_password"
+                placeholder="Re-enter your password"
+                required
+                autocomplete="new-password"
+            >
+
+            <label class="show-password">
+                <input
+                    type="checkbox"
+                    id="showConfirmPassword"
+                    onchange="togglePassword('confirm_password', this)"
+                >
+                Show confirm password
+            </label>
+        </div>
+
+        <!-- Register Button -->
+        <button class="button" type="submit">
+            Create Account
+        </button>
+
+    </form>
+
+    <!-- Login Link -->
+    <p class="small">
+        Already have an account?
+        <a href="{% url 'login' %}">Login here</a>
+    </p>
+
+</section>
+
+<!-- Show/Hide Password -->
+<script>
+    function togglePassword(inputId, checkbox) {
+        const passwordInput =
+            document.getElementById(inputId);
+
+        passwordInput.type =
+            checkbox.checked ? "text" : "password";
+    }
+</script>
+
+{% endblock %}
+```

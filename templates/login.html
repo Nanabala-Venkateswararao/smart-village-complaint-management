@@ -1,0 +1,86 @@
+
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<section class="form-card">
+
+    <h1>Welcome back</h1>
+    <p>Login to manage your complaints.</p>
+
+    {% if error %}
+        <div class="message error-box">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Username -->
+        <div class="field">
+            <label for="username">Username</label>
+
+            <input
+                id="username"
+                type="text"
+                name="username"
+                placeholder="Enter your username"
+                required
+                autocomplete="username"
+            >
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+            <label for="password">Password</label>
+
+            <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+                autocomplete="current-password"
+            >
+
+            <label class="show-password" for="showPassword">
+                <input
+                    type="checkbox"
+                    id="showPassword"
+                    onchange="togglePassword()"
+                >
+                <span>Show password</span>
+            </label>
+        </div>
+
+        <button class="button" type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <p class="small">
+        New here?
+        <a href="{% url 'register' %}">Create an account</a>
+    </p>
+
+</section>
+
+<script>
+    function togglePassword() {
+        const password =
+            document.getElementById("password");
+
+        const checkbox =
+            document.getElementById("showPassword");
+
+        password.type = checkbox.checked
+            ? "text"
+            : "password";
+    }
+</script>
+
+{% endblock %}

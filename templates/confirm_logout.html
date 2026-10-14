@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block title %}Logout{% endblock %}{% block content %}
+<section class="form-card"><h1>Log out?</h1><form method="post">{% csrf_token %}<button class="button" type="submit">Confirm logout</button></form></section>
+{% endblock %}

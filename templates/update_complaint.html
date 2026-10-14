@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Update Complaint{% endblock %}
+{% block content %}
+<section class="form-card wide"><p class="eyebrow">PANCHAYAT PORTAL · #{{ complaint.pk }}</p><h1>Update complaint</h1><h3>{{ complaint.title }}</h3><p class="muted">{{ complaint.category }} · {{ complaint.village_location }}</p><p class="preserve">{{ complaint.description }}</p>
+<form method="post">{% csrf_token %}{% for field in form %}<div class="field"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% for error in field.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>{% endfor %}
+<button class="button" type="submit">Save update</button> <a class="button secondary" href="{% url 'official_dashboard' %}">Cancel</a></form></section>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Home | Smart Village{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">YOUR VOICE · YOUR VILLAGE</p>
+  <h1>Better villages start with <span>being heard.</span></h1>
+  <p>Report local issues, track progress, and help your panchayat make your village better.</p>
+  <div class="actions"><a class="button" href="{% url 'create_complaint' %}">Submit a complaint</a><a class="button secondary" href="{% url 'dashboard' %}">Track my complaints</a></div>
+</section>
+<section class="stats">
+  <div class="stat"><strong>{{ stats.total }}</strong><span>Complaints submitted</span></div>
+  <div class="stat"><strong>{{ stats.resolved }}</strong><span>Complaints resolved</span></div>
+  <div class="stat"><strong>3 steps</strong><span>Submit · Review · Resolve</span></div>
+</section>
+<section class="panel">
+  <h2>How it works</h2>
+  <div class="steps">
+    <div><b>01 — Report</b><p>Register and explain the issue with its location.</p></div>
+    <div><b>02 — Track</b><p>Check whether the complaint is pending or in progress.</p></div>
+    <div><b>03 — Resolve</b><p>Officials update the status and provide a response.</p></div>
+  </div>
+</section>
+{% endblock %}

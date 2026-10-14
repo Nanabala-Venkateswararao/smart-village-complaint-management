@@ -1,23 +1,137 @@
+
 {% extends "base.html" %}
-{% block title %}Home | Smart Village{% endblock %}
+
+{% block title %}Home{% endblock %}
+
 {% block content %}
-<section class="hero">
-  <p class="eyebrow">YOUR VOICE · YOUR VILLAGE</p>
-  <h1>Better villages start with <span>being heard.</span></h1>
-  <p>Report local issues, track progress, and help your panchayat make your village better.</p>
-  <div class="actions"><a class="button" href="{% url 'create_complaint' %}">Submit a complaint</a><a class="button secondary" href="{% url 'dashboard' %}">Track my complaints</a></div>
+<section class="hero hero-home">
+    <div class="hero-copy">
+        <span class="eyebrow">YOUR VOICE MATTERS</span>
+
+        <h1>
+            A better village begins with
+            <span>being heard.</span>
+        </h1>
+
+        <p class="hero-description">
+            Report local issues, follow their progress, and work
+            together to make your community a better place.
+        </p>
+
+        <div class="hero-actions">
+            <a class="button button-primary"
+               href="{% url 'create_complaint' %}">
+                Report an issue ↗
+            </a>
+
+            <a class="button button-quiet"
+               href="{% url 'dashboard' %}">
+                Track my complaints →
+            </a>
+        </div>
+
+        <p class="hero-trust">
+            ✓ One place to report, track and stay informed
+        </p>
+    </div>
+
+    <div class="hero-art">
+        <div class="art-sun"></div>
+        <div class="art-hill hill-back"></div>
+        <div class="art-hill hill-front"></div>
+
+        <div class="art-house house-one">
+            <span></span><i></i><b></b>
+        </div>
+
+        <div class="art-house house-two">
+            <span></span><i></i><b></b>
+        </div>
+
+        <div class="art-label">
+            <span class="art-label-icon">✓</span>
+            <span>
+                <strong>Every voice counts</strong>
+                <small>Progress starts here</small>
+            </span>
+        </div>
+    </div>
 </section>
-<section class="stats">
-  <div class="stat"><strong>{{ stats.total }}</strong><span>Complaints submitted</span></div>
-  <div class="stat"><strong>{{ stats.resolved }}</strong><span>Complaints resolved</span></div>
-  <div class="stat"><strong>3 steps</strong><span>Submit · Review · Resolve</span></div>
+
+<section class="stats-grid">
+    <article class="stat-card">
+        <span class="stat-icon">↗</span>
+        <div>
+            <strong>{{ stats.total|default:0 }}</strong>
+            <span>Total complaints</span>
+        </div>
+    </article>
+
+    <article class="stat-card">
+        <span class="stat-icon">✓</span>
+        <div>
+            <strong>{{ stats.resolved|default:0 }}</strong>
+            <span>Issues resolved</span>
+        </div>
+    </article>
+
+    <article class="stat-card">
+        <span class="stat-icon">◎</span>
+        <div>
+            <strong>3 simple steps</strong>
+            <span>Report · Review · Resolve</span>
+        </div>
+    </article>
 </section>
-<section class="panel">
-  <h2>How it works</h2>
-  <div class="steps">
-    <div><b>01 — Report</b><p>Register and explain the issue with its location.</p></div>
-    <div><b>02 — Track</b><p>Check whether the complaint is pending or in progress.</p></div>
-    <div><b>03 — Resolve</b><p>Officials update the status and provide a response.</p></div>
-  </div>
+
+<section class="section-block">
+    <div class="section-heading">
+        <span class="eyebrow">HOW IT WORKS</span>
+        <h2>Small steps. Real change.</h2>
+        <p>
+            Help the right people understand an issue and follow
+            what happens next.
+        </p>
+    </div>
+
+    <div class="steps-grid">
+        <article class="step-card">
+            <span class="step-number">01</span>
+            <h3>Report an issue</h3>
+            <p>
+                Explain the problem and its location.
+                Add a photo if needed.
+            </p>
+        </article>
+
+        <article class="step-card">
+            <span class="step-number">02</span>
+            <h3>Track progress</h3>
+            <p>
+                Visit your dashboard to check the complaint status.
+            </p>
+        </article>
+
+        <article class="step-card">
+            <span class="step-number">03</span>
+            <h3>See the outcome</h3>
+            <p>
+                Follow updates from officials as the issue is handled.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section class="community-banner">
+    <div>
+        <span class="eyebrow">LET'S MAKE A DIFFERENCE</span>
+        <h2>Something needs fixing?</h2>
+        <p>Your report can help your community take the next step.</p>
+    </div>
+
+    <a class="button button-light"
+       href="{% url 'create_complaint' %}">
+        Submit a complaint →
+    </a>
 </section>
 {% endblock %}
